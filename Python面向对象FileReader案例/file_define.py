@@ -9,7 +9,7 @@
 """
 import json
 
-from data_define import Data
+from Python面向对象FileReader案例.data_define import Data
 
 
 class FileReader:
