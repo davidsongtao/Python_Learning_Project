@@ -12,6 +12,6 @@ conf = SparkConf().setMaster("local[*]").setAppName("test_spark_app")
 # 基于SparkConf类对象创建SparkContext对象
 sc = SparkContext(conf=conf)
 # 打印PySpark的运行版本
-print(sc.version)
+print("PySpark版本："+sc.version)
 # 停止SparkContext对象的运行（停止PySpark程序）
 sc.stop()
