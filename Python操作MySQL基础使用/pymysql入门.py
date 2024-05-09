@@ -13,7 +13,7 @@ connection = Connection(
     autocommit=True  # 设置执行数据更改的SQL语句时，不需要connection.commit()进行确认
 )
 
-print(f"版本信息：{connection.get_server_info()}")
+# print(f"版本信息：{connection.get_server_info()}")
 
 """
 要执行费查询类的SQL语句，需要遵循以下步骤：
@@ -28,14 +28,14 @@ print(f"版本信息：{connection.get_server_info()}")
 # cursor.execute("create table test_pymysql(id int);")
 
 # 执行查询类的SQL语句，获取查询结果，结果是一个元祖
-# cursor = connection.cursor()
-# connection.select_db("world")
-# cursor.execute("select * from city")
+cursor = connection.cursor()
+connection.select_db("test")
+cursor.execute("select * from test_pymysql")
 #
-# result = cursor.fetchall()  # 通过fetchall()获取查询结果，封装到元祖内
+result = cursor.fetchall()  # 通过fetchall()获取查询结果，封装到元祖内
 #
-# for data in result:  # for循环取出每一条结果数据
-#     print(data)
+for data in result:  # for循环取出每一条结果数据
+    print(data[0])
 
 """
 pymysql在执行数据插入或更改的操作时，默认是需要提交更改的，
