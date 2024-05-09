@@ -12,19 +12,12 @@ from pyspark import SparkConf, SparkContext
 conf = SparkConf().setMaster("local[*]").setAppName("word_count_test")
 sc = SparkContext(conf=conf)
 
-file = open("/home/songtao/Documents/hello.txt", "r", encoding="UTF-8")
-
-data_list = []
-
-for line in file.readlines():
-    line_update = line.strip().split(" ")
-    for word in line_update:
-        data_list.append(word)
-
-rdd = sc.parallelize(data_list)
-tuple_rdd = rdd.map(lambda x: (x, 1))  # 构建二元元组，单词为key,value设置为1
-
-result = tuple_rdd.reduceByKey(lambda x, y: x + y)  # 通过key对value进行聚合相加计算
+"""
+使用textfile和flatmap进行取出
+"""
+rdd = sc.textFile("/home/songtao/Documents/hello.txt")
+# 构建二元元组，单词为key,value设置为1 并 通过key对value进行聚合相加计算
+result = rdd.flatMap(lambda x: x.split()).map(lambda x: (x, 1)).reduceByKey(lambda x, y: x + y)
 
 count_python = result.collect()[0][1]  # "python"出现的次数
 count_pyspark = result.collect()[1][1]
@@ -33,4 +26,4 @@ count_spark = result.collect()[3][1]
 count_itcast = result.collect()[4][1]
 
 print(
-    f"'python'单词在文件中出现的次数为：{count_python}次。\n'pyspark'单词在文件中出现的次数为:{count_pyspark}次。\n'itheima'单词在文件中出现的次数为:{count_itheima}次。\n'spark'单词在文件中出现的次数为:{count_spark}次。\n'itcast'单词在文件中出现的次数为:{count_itcast}次。")
+    f"'python'出现的次数为：{count_python}次。\n'pyspark'出现的次数为:{count_pyspark}次。\n'itheima'出现的次数为:{count_itheima}次。\n'spark'出现的次数为:{count_spark}次。\n'itcast'出现的次数为:{count_itcast}次。")
