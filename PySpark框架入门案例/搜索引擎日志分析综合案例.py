@@ -42,7 +42,7 @@ result_3 = rdd_process. \
     take(1)
 print(f"'黑马程序员'关键字在{result_3[0][0]}点时段被搜索次数最多。")
 
-# TODO 需求4： 将数据转换为JSON格式，写出文件
+# 需求4： 将数据转换为JSON格式，写出文件
 # 4.1 转换为JSON格式的RDD
 # 4.2 写出为文件
 rdd_process.\
