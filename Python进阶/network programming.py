@@ -24,7 +24,7 @@ while True:
     data = conn.recv(1024).decode("UTF=8")
     print(f"客户端发来的消息是：{data}")
     msg = input("请输入你要给客户端回复的消息：")
-    if msg == "":
+    if msg == "exit":
         break
     conn.send(msg.encode("UTF=8"))
 # # 发送回复消息,要使用conn对象
