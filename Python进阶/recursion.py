@@ -23,7 +23,7 @@ def get_files_list(path):
     """
     files_list = []
     if os.path.exists(path):  # 判断传入的路径是否存在
-        # 路径存在，列出所有文件,判断列出的文件里是文件还是文件夹，如果是文件，放入list，如果是文件夹，递归调用自己
+        # 如果路径存在，列出所有文件,判断列出的内容是文件还是文件夹，如果是文件，放入list，如果是文件夹，递归调用自己
         for content in os.listdir(path):
             new_path = path + "/" + content  # 重新组装新的文件夹路径
             if os.path.isdir(new_path):
