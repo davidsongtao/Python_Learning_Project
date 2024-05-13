@@ -21,6 +21,7 @@ def get_files_list(path):
     :param path: 被判断的文件夹
     :return: list,包含全部的文件，如果目录不存在或者无文件就返回一个空list
     """
+    print(f"当前判断的文件路径是：{path}")
     files_list = []
     if os.path.exists(path):  # 判断传入的路径是否存在
         # 如果路径存在，列出所有文件,判断列出的内容是文件还是文件夹，如果是文件，放入list，如果是文件夹，递归调用自己
